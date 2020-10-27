@@ -18,11 +18,11 @@ const typeDefs = gql`
   }
 `
 
-const authors = [
-  { id: 1, title: 'Google', url: "hhtps://google.com.pk" },
-  { id: 2, title: 'Facebook', url: "https://facebook.com" },
-  // { id: 3, name: 'JK Rowling', married: false },
-]
+// const urls = [
+//   { id: 1, title: 'Google', url: "hhtps://google.com.pk" },
+//   { id: 2, title: 'Facebook', url: "https://facebook.com" },
+//   { id: 3, title: 'Youtube', url: "https://youtube.com" }
+// ]
 
 const resolvers = {
   Query: {

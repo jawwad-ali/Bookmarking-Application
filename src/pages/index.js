@@ -1,9 +1,15 @@
 import React from "react"
 import { useMutation, useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./styles.css"
+import Header from "../component/header"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 
 const BOOKMARK_QUERY = gql`{
     bookmark{
+      id
       title
       url
     }
@@ -18,7 +24,6 @@ const ADD_BOOKMARK_MUTATION = gql`
     }
   }
 `
-
 export default function Home() {
 
   const { loading, data, error } = useQuery(BOOKMARK_QUERY)
@@ -46,27 +51,73 @@ export default function Home() {
     urlField.value = ""
   }
 
+  if (loading)
+    return <h4>loading...</h4>
+
+  if (error)
+    return <h4>Error :(</h4>
+
   return (
     <div>
-      <div>
-        <label>
-          Enter Bookmark Tite: <br />
-          <input type="text" ref={node => titleField = node} />
-        </label>
+      <Header />
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="form-container">
+              <input type="text" ref={node => titleField = node} className="form-control half-width" placeholder="Title" />
 
-        <br />
-        <label>
-          Enter Bookmark Url: <br />
-          <input type="text" ref={node => urlField = node} />
-        </label>
+              <br />
+              <input type="text" ref={node => urlField = node} className="form-control half-width" placeholder="URL" />
 
-        <br />
-        <br />
-        <button onClick={addBookmarkSubmit} >Add Bookmark</button>
+              <div className="full-width mt-2 submit-btn-div">
+                <button onClick={addBookmarkSubmit} className="btn btn-primary" >Add Bookmark</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      {
-        JSON.stringify(data)
-      }
+
+
+      {/* FAUNADB DATA */}
+
+      <div className="container main-container">
+        <div className="row">
+          {data.bookmark.map((bm) => {
+            return (
+              <div key={bm.id} className="col-lg-4 offset-lg-1 mt-3 mr-1 data-container">
+                <div className="icon-span" >
+                  <FontAwesomeIcon className="icon" icon={faBookmark} />
+                </div>
+
+                <div className="inner-data-div">
+                  <div className="title-div">
+                    <p className="title" key={bm.id}>{bm.title} </p>
+                  </div>
+                  <div className="url-div">
+                    <a className="url" href={bm.url}>{bm.url}</a>
+                  </div>
+                </div>
+
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }
+
+{/* {data.bookmark.map((bm) => {
+        return (
+          <div>
+            <p key={bm.id}>
+              {bm.title}
+            </p>
+            <p>
+              {
+                bm.url
+              }
+            </p>
+          </div>
+        )
+      })} */}
