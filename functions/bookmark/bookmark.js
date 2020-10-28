@@ -8,7 +8,7 @@ const typeDefs = gql`
     bookmark: [Bookmark!]
   }
   type Bookmark {
-    id: ID!
+    id: ID! 
     title: String!
     url: String!
   }
@@ -17,12 +17,6 @@ const typeDefs = gql`
     addBookmark(title: String! , url:String!) : Bookmark
   }
 `
-
-// const urls = [
-//   { id: 1, title: 'Google', url: "hhtps://google.com.pk" },
-//   { id: 2, title: 'Facebook', url: "https://facebook.com" },
-//   { id: 3, title: 'Youtube', url: "https://youtube.com" }
-// ]
 
 const resolvers = {
   Query: {
