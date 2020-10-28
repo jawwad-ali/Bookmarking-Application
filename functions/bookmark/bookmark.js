@@ -63,7 +63,6 @@ const resolvers = {
             },
           )
         );
-        console.log("Document Created and Inserted in Container: " + result.ref.id);
         return result.ref.data
 
       }

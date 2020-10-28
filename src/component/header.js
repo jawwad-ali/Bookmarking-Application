@@ -3,7 +3,7 @@ import "./header.css"
 
 function header() {
     return (
-        <div className="container-fluid px-0">
+        <div className="container-fluid px-0"> 
             <div className="row no-gutters">
                 <div className="col-lg-12 bg-primary">
                     <header>

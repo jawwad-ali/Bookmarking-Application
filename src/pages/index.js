@@ -27,8 +27,6 @@ const ADD_BOOKMARK_MUTATION = gql`
 export default function Home() {
 
   const { loading, data, error } = useQuery(BOOKMARK_QUERY)
-  console.log(data)
-  console.log("error===>>",error)
 
   let titleField
   let urlField

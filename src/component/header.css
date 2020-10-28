@@ -6,4 +6,11 @@ h1 {
     font-size: 35px;
     text-transform: uppercase;
     font-family: 'Montserrat';
+} 
+
+@media only screen and (max-width:600px){
+    h1{
+        font-size: 23px;
+        /* display: none; */
+    }
 }
